@@ -1,5 +1,4 @@
 package JorgeLuis.CadastroNinja.Missoes;
-
 import org.hibernate.Remove;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,7 +6,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("missoes")
 public class MissoesController {
 
-//    CRUD das missões
+    @GetMapping("/boasvindas")
+    public String boasVindasMissoes() {
+        return "Boas vindas a o cadastro de missões";
+    }
+
+
+    //    CRUD das missões
 //     Adicionar missão (CREATE)
     @PostMapping("/criar")
     public String adicionarMissao() {
@@ -37,11 +42,10 @@ public class MissoesController {
 
 
 //    Remover missão (REMOVE)
-    @DeleteMapping("/deletar")
+    @DeleteMapping("/deletarID")
     public String deletarMissao() {
         return "Missão futuramente deletadad";
     }
 
-
-
+    
 }

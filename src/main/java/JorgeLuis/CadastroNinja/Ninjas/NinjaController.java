@@ -2,12 +2,12 @@ package JorgeLuis.CadastroNinja.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("ninjas")
 public class NinjaController {
 
     @GetMapping("/boasvindas")
-    public String boasVindas() {
-        return "Essa é minha primeira mensagem nessa rota";
+    public String boasVindasNinja() {
+        return "Boas vindas a o cadastro de ninjas";
     }
 
 //    Criação do CRUD
@@ -44,7 +44,6 @@ public class NinjaController {
     public String deletarNinjaPorId() {
         return "Ninja futuramente deletado por id :)";
     }
-
 
 
 
