@@ -37,7 +37,7 @@ public class MissoesController {
 
 
 //    Procurar missão por id (READ)
-    @GetMapping("/MissaoID")
+    @GetMapping("/listar/")
     public String mostrarMissaoId() {
         return "Missão Id";
     }
