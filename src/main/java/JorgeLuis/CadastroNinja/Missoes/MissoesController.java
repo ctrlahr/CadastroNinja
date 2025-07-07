@@ -37,9 +37,9 @@ public class MissoesController {
 
 
 //    Procurar missão por id (READ)
-    @GetMapping("/listar/")
-    public String mostrarMissaoId() {
-        return "Missão Id";
+    @GetMapping("/listar/{id}")
+    public MissoesModel listarMissaoPorId(@PathVariable Long id) {
+        return missoesService.missaoPorId(id);
     }
 
 
