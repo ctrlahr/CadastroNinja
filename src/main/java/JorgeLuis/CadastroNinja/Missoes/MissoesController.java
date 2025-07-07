@@ -2,10 +2,19 @@ package JorgeLuis.CadastroNinja.Missoes;
 import org.hibernate.Remove;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("missoes")
 public class MissoesController {
 
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
+
+    //    Rotas
     @GetMapping("/boasvindas")
     public String boasVindasMissoes() {
         return "Boas vindas a o cadastro de missões";
@@ -22,8 +31,8 @@ public class MissoesController {
 
 //    Mostrar todas as missões (READ)
     @GetMapping("/listar")
-    public String mostrarTodasMissoes() {
-        return "Todas as missões";
+    public List<MissoesModel> listarMissoes() {
+        return missoesService.listarMissoes();
     }
 
 
