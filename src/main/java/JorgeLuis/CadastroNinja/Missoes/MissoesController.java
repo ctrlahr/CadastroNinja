@@ -21,7 +21,7 @@ public class MissoesController {
 
 
 //    Mostrar todas as missões (READ)
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String mostrarTodasMissoes() {
         return "Todas as missões";
     }
@@ -47,5 +47,5 @@ public class MissoesController {
         return "Missão futuramente deletadad";
     }
 
-    
+
 }

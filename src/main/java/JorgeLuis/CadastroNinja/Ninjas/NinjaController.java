@@ -1,10 +1,20 @@
 package JorgeLuis.CadastroNinja.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("ninjas")
 public class NinjaController {
 
+//    Injeção de dependência do service para realizar as queries do JPA
+    private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
+
+//    Rotas
     @GetMapping("/boasvindas")
     public String boasVindasNinja() {
         return "Boas vindas a o cadastro de ninjas";
@@ -19,9 +29,9 @@ public class NinjaController {
 
 
 //    Mostar todos os ninjas (READ)
-    @GetMapping("/todos")
-    public String mostrarTodosNinjas() {
-        return "Todos os ninjas";
+    @GetMapping("/listar")
+    public List<NinjaModel> listarNinjas() {
+        return ninjaService.listarNinjas();
     }
 
 
