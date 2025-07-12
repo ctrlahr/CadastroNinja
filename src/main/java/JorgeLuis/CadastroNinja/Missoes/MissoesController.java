@@ -49,11 +49,11 @@ public class MissoesController {
         return "Missão futuramente alterada";
     }
 
-
 //    Remover missão (REMOVE)
-    @DeleteMapping("/deletarID")
-    public String deletarMissao() {
-        return "Missão futuramente deletadad";
+    @DeleteMapping("/deletar/{id}")
+    public String deletarMissao(@PathVariable Long id) {
+        missoesService.deletarMissao(id);
+        return "Missão deletada com sucesso!";
     }
 
 
