@@ -33,6 +33,9 @@ public class NinjaService {
     }
 
 //    Atualizar informações de um ninja
+    public NinjaModel alterarNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);
+    }
 
 
 //    Deletar um ninja

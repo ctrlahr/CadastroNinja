@@ -45,8 +45,8 @@ public class MissoesController {
 
 //    Alterar dados da missão (UPDATE)
     @PutMapping("/alterar")
-    public String alterarMissao() {
-        return "Missão futuramente alterada";
+    public MissoesModel alterarMissao(@RequestBody MissoesModel missao) {
+        return missoesService.alterarMissao(missao);
     }
 
 //    Remover missão (REMOVE)

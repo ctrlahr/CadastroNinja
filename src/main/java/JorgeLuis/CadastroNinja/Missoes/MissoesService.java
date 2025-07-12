@@ -30,7 +30,9 @@ public class MissoesService {
     }
 
 //    Método modificar missão
-
+    public MissoesModel alterarMissao(MissoesModel missao) {
+        return missoesRepository.save(missao);
+    }
 
 //    Método deletar missão
     public void deletarMissao(Long id) {

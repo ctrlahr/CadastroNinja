@@ -20,6 +20,7 @@ public class NinjaController {
         return "Boas vindas a o cadastro de ninjas";
     }
 
+
 //    Criação do CRUD
 //    Adicionar ninja (CREATE)
     @PostMapping("/criar")
@@ -44,8 +45,8 @@ public class NinjaController {
 
 //    Alterar dados dos ninjas (UPDATE)
     @PutMapping("/alterar")
-    public String alterarNinja() {
-        return "Ninja futuramente alterado :)";
+    public NinjaModel alterarNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.alterarNinja(ninja);
     }
 
 
@@ -55,7 +56,4 @@ public class NinjaController {
         ninjaService.deletarNinja(id);
         return "Ninja deletado com sucesso!!";
     }
-
-
-
 }
