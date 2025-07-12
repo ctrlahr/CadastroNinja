@@ -32,5 +32,15 @@ public class NinjaService {
         return ninjaRepository.save(ninja);
     }
 
+//    Atualizar informações de um ninja
+
+
+
+//    Deletar um ninja
+    public void deletarNinja(Long id) {
+        ninjaRepository.deleteById(id);
+    }
+
+
 
 }
