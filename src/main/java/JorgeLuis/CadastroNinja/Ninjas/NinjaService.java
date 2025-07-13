@@ -33,8 +33,21 @@ public class NinjaService {
     }
 
 //    Atualizar informações de um ninja
-    public NinjaModel alterarNinja(NinjaModel ninja) {
+
+//    Forma que eu fiz:
+/*    public NinjaModel alterarNinja(NinjaModel ninja) {
         return ninjaRepository.save(ninja);
+    }*/
+
+
+//    Como o fiasco fez
+    public NinjaModel alterarNinja(Long id, NinjaModel ninjaAtualizado) {
+        if (ninjaRepository.existsById(id)) {
+            ninjaAtualizado.setId(id);
+            return ninjaRepository.save(ninjaAtualizado);
+        }
+
+        return null;
     }
 
 
