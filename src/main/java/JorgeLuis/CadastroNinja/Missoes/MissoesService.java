@@ -30,8 +30,12 @@ public class MissoesService {
     }
 
 //    Método modificar missão
-    public MissoesModel alterarMissao(MissoesModel missao) {
-        return missoesRepository.save(missao);
+    public MissoesModel alterarMissao(Long id, MissoesModel missaoAtualizada) {
+        if (missoesRepository.existsById(id)) {
+            missaoAtualizada.setId(id);
+            return missoesRepository.save(missaoAtualizada);
+        }
+        return null;
     }
 
 //    Método deletar missão

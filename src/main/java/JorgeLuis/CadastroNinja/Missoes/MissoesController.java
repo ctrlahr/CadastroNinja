@@ -44,9 +44,9 @@ public class MissoesController {
 
 
 //    Alterar dados da missão (UPDATE)
-    @PutMapping("/alterar")
-    public MissoesModel alterarMissao(@RequestBody MissoesModel missao) {
-        return missoesService.alterarMissao(missao);
+    @PutMapping("/alterar/{id}")
+    public MissoesModel alterarMissao(@PathVariable Long id, @RequestBody MissoesModel missao) {
+        return missoesService.alterarMissao(id, missao);
     }
 
 //    Remover missão (REMOVE)
