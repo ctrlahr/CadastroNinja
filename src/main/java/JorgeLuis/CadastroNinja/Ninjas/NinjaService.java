@@ -10,16 +10,17 @@ import java.util.Spliterator;
 public class NinjaService {
 
     private NinjasRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjasRepository ninjaRepository) {
+    public NinjaService(NinjasRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     //    Listar todos os ninjas
     public List<NinjaModel> listarNinjas() {
         return ninjaRepository.findAll();
     }
-
 
 //    Listar ninja por Id
     public NinjaModel listarNinjaPorId(Long id) {
@@ -28,8 +29,10 @@ public class NinjaService {
     }
 
 //    Cadastrar um ninja
-    public NinjaModel criarNinja(NinjaModel ninja) {
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
 //    Atualizar informações de um ninja
