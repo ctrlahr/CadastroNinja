@@ -1,5 +1,4 @@
 package JorgeLuis.CadastroNinja.Missoes;
-import org.hibernate.Remove;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,28 +23,28 @@ public class MissoesController {
     //    CRUD das missões
 //     Adicionar missão (CREATE)
     @PostMapping("/criar")
-    public MissoesModel adicionarMissao(@RequestBody MissoesModel missao) {
+    public MissoesDTO adicionarMissao(@RequestBody MissoesDTO missao) {
         return missoesService.criarMissao(missao);
     }
 
 
 //    Mostrar todas as missões (READ)
     @GetMapping("/listar")
-    public List<MissoesModel> listarMissoes() {
+    public List<MissoesDTO> listarMissoes() {
         return missoesService.listarMissoes();
     }
 
 
-//    Procurar missão por id (READ)
+//    Procurar missão por "id" (READ)
     @GetMapping("/listar/{id}")
-    public MissoesModel listarMissaoPorId(@PathVariable Long id) {
+    public MissoesDTO listarMissaoPorId(@PathVariable Long id) {
         return missoesService.missaoPorId(id);
     }
 
 
-//    Alterar dados da missão (UPDATE)
+//    Alterar dados da missão ("UPDATE")
     @PutMapping("/alterar/{id}")
-    public MissoesModel alterarMissao(@PathVariable Long id, @RequestBody MissoesModel missao) {
+    public MissoesDTO alterarMissao(@PathVariable Long id, @RequestBody MissoesDTO missao) {
         return missoesService.alterarMissao(id, missao);
     }
 

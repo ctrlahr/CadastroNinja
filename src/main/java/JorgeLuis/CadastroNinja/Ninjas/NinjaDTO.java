@@ -1,5 +1,4 @@
 package JorgeLuis.CadastroNinja.Ninjas;
-
 import JorgeLuis.CadastroNinja.Missoes.MissoesModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
