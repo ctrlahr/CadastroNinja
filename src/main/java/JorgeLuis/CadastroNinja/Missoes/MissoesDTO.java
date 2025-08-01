@@ -19,3 +19,7 @@ public class MissoesDTO {
     private List<NinjaModel> ninjas;
 
 }
+
+
+
+
