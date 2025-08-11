@@ -1,4 +1,7 @@
 package JorgeLuis.CadastroNinja.Missoes;
+import JorgeLuis.CadastroNinja.Ninjas.NinjaDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -7,7 +10,7 @@ import java.util.List;
 @RequestMapping("missoes")
 public class MissoesController {
 
-    private MissoesService missoesService;
+    private final MissoesService missoesService;
 
     public MissoesController(MissoesService missoesService) {
         this.missoesService = missoesService;
@@ -23,8 +26,10 @@ public class MissoesController {
     //    CRUD das missões
 //     Adicionar missão (CREATE)
     @PostMapping("/criar")
-    public MissoesDTO adicionarMissao(@RequestBody MissoesDTO missao) {
-        return missoesService.criarMissao(missao);
+    public ResponseEntity<String> adicionarMissao(@RequestBody MissoesDTO missao) {
+        MissoesDTO missaoCriada =  missoesService.criarMissao(missao);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Ninja " + missaoCriada.getNome() + " Id: " + missaoCriada.getId() + " criado com sucesso!!");
     }
 
 
@@ -50,9 +55,18 @@ public class MissoesController {
 
 //    Remover missão (REMOVE)
     @DeleteMapping("/deletar/{id}")
-    public String deletarMissao(@PathVariable Long id) {
-        missoesService.deletarMissao(id);
-        return "Missão deletada com sucesso!";
+    public ResponseEntity<String> deletarMissao(@PathVariable Long id) {
+        MissoesDTO missao = missoesService.missaoPorId(id);
+        if (missoesService.missaoPorId(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Missão " + id + " Não encontrada");
+        } else if (missoesService.missaoPorId(id).getNinjas() != null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("A Missão " + missao.getNome() + " Id: " + id + " está sendo feita por um ninja, impossível deletar!");
+        } else {
+            missoesService.deletarMissao(id);
+            return ResponseEntity.ok("Missão " + missao.getNome() + " Id " + id + " Deletada com sucesso!");
+        }
     }
 
 
