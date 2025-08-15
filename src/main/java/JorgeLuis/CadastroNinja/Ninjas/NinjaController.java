@@ -36,15 +36,23 @@ public class NinjaController {
 
 //    Mostar todos os ninjas (READ)
     @GetMapping("/listar")
-    public List<NinjaDTO> listarNinjas() {
-        return ninjaService.listarNinjas();
+    public ResponseEntity<List<NinjaDTO>> listarNinjas() {
+        List<NinjaDTO> ninjas = ninjaService.listarNinjas();
+        return ResponseEntity.ok(ninjas);
     }
 
 
 //    Procurar ninja por id (READ)
     @GetMapping("/listar/{id}")
-    public NinjaDTO listarNinjaPorId(@PathVariable Long id) {
-        return ninjaService.listarNinjaPorId(id);
+    public ResponseEntity<String> listarNinjaPorId(@PathVariable Long id) {
+        if (ninjaService.listarNinjaPorId(id) != null) {
+            NinjaDTO ninjaid = ninjaService.listarNinjaPorId(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body("Ninja: " + ninjaid.getNome() + "\nId: " + ninjaid.getId() + "\nEmail: " + ninjaid.getEmail() + "\nImagem: " + ninjaid.getImg_url() + "\nIdade: " + ninjaid.getIdade() + "\nRank: " + ninjaid.getRank());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja " + id + " nao encontrado");
+        }
     }
 
 
